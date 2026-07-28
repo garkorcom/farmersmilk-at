@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer's Milk — Coming Soon · Wien</title>
+<meta name="description" content="Farm-fresh Bakery Café. Eröffnet bald in Wien — hinterlasse deine E-Mail und erfahre das Eröffnungsdatum zuerst.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EFE6; --ink:#252220; --ink-soft:rgba(37,34,32,.62);
+    --accent:#E07B5E; --line:rgba(37,34,32,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+  .top{display:flex;align-items:center;justify-content:space-between;max-width:1060px;margin:0 auto;padding:26px 24px}
+  .top img{height:44px}
+  .langs{display:flex;gap:18px}
+  .langs button{font-family:'Montserrat',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;background:none;border:none;color:var(--ink-soft);cursor:pointer;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s}
+  .langs button.active{color:var(--ink);border-bottom-color:var(--ink)}
+  .langs button:hover{color:var(--ink)}
+
+  main{max-width:640px;margin:0 auto;padding:6vh 24px 0;text-align:center}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  h1{font-family:'Vollkorn SC',serif;font-weight:600;font-size:clamp(34px,6.4vw,52px);line-height:1.14;max-width:16ch;margin:0 auto 18px;text-wrap:balance}
+  .tagline{font-size:16px;color:var(--ink-soft);letter-spacing:.03em;margin-bottom:44px}
+
+  .hero-photo{max-width:1060px;margin:0 auto;padding:0 24px}
+  .hero-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 42%;display:block;border-radius:4px}
+
+  .invite{max-width:520px;margin:64px auto 0;padding:0 24px;text-align:center}
+  .invite h2{font-family:'Vollkorn SC',serif;font-weight:600;font-size:24px;margin-bottom:12px}
+  .invite p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin-bottom:28px}
+  form{display:flex;gap:0;border-bottom:1px solid var(--ink);padding-bottom:10px}
+  input[type=email]{flex:1;font-family:'Montserrat',sans-serif;font-size:16px;background:none;border:none;outline:none;color:var(--ink);padding:8px 0}
+  input[type=email]::placeholder{color:var(--ink-soft)}
+  .submit{font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;color:var(--accent);cursor:pointer;padding:8px 0 8px 16px;transition:opacity .2s;white-space:nowrap}
+  .submit:hover{opacity:.65}
+  .submit:disabled{opacity:.4;cursor:wait}
+  .form-note{font-size:12px;color:var(--ink-soft);margin-top:14px}
+  .success{display:none;margin-top:6px;font-size:15px;font-weight:600;color:var(--ink)}
+
+  .about{max-width:520px;margin:72px auto 0;padding:0 24px;text-align:center}
+  .about .milk{font-family:'Vollkorn SC',serif;font-size:22px;line-height:1.4;text-wrap:balance}
+  .about p{margin-top:12px;font-size:14px;color:var(--ink-soft);line-height:1.65}
+
+  .cta{margin:64px auto 0;padding:0 24px;text-align:center}
+  .cta a{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:opacity .2s}
+  .cta a:hover{opacity:.6}
+
+  footer{max-width:1060px;margin:80px auto 0;padding:22px 24px 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--ink-soft)}
+  footer .motto{font-family:'Vollkorn SC',serif;font-size:13px;letter-spacing:.05em;color:var(--ink)}
+
+  @media (max-width:520px){
+    .top img{height:36px}
+    form{flex-direction:column;gap:10px;border-bottom:none}
+    input[type=email]{border-bottom:1px solid var(--ink);padding:10px 0;text-align:center}
+    .submit{border:1px solid var(--ink);border-radius:999px;padding:12px 0;width:100%}
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <img src="../../assets/logo-dark.png" alt="Farmer's Milk">
+    <div class="langs" id="langs"></div>
+  </div>
+
+  <main>
+    <div class="kicker" data-i18n="kicker"></div>
+    <h1 data-i18n="h1"></h1>
+    <div class="tagline">Farm-fresh Bakery Café · <span data-i18n="tag"></span></div>
+  </main>
+
+  <div class="hero-photo">
+    <img src="../../assets/photo_honey_cake.jpg" alt="Medovik — Farmer's Milk">
+  </div>
+
+  <section class="invite">
+    <h2 data-i18n="card_h"></h2>
+    <p data-i18n="card_p"></p>
+    <form id="invite-form">
+      <input type="email" name="email" data-i18n-ph="ph" required autocomplete="email">
+      <button type="submit" class="submit" id="submit-btn" data-i18n="btn"></button>
+    </form>
+    <div class="success" id="success"></div>
+    <div class="form-note" data-i18n="note"></div>
+  </section>
+
+  <section class="about">
+    <div class="milk" data-i18n="milk"></div>
+    <p data-i18n="about_p"></p>
+  </section>
+
+  <div class="cta">
+    <a href="https://www.instagram.com/farmersmilk.austria/" target="_blank" rel="noopener">@farmersmilk.austria</a>
+  </div>
+
+  <footer>
+    <div class="motto">Different farms. One Farmer's Milk.</div>
+    <div data-i18n="roots"></div>
+  </footer>
+
+<script>
+const I18N = {
+  de: {
+    kicker:'Coming Soon · Wien', h1:'Eröffnet bald in Wien', tag:'Kuchen · Frühstück · Kaffee',
+    card_h:'Wir laden dich zur Eröffnung ein',
+    card_p:'Hinterlasse deine E-Mail — wir schicken dir das Eröffnungsdatum und deine persönliche Einladung.',
+    ph:'deine@email.at', btn:'Einladung sichern',
+    success:'Danke! Wir schreiben dir, sobald das Eröffnungsdatum feststeht.',
+    note:'Kein Spam — nur die Einladung.',
+    milk:'Alles beginnt mit Milch.',
+    about_p:'Frische Milch vom Hof — in jedem Kuchen, jedem Kaffee und jedem Frühstück. Handgemacht, farm-frisch, mit ukrainischen Wurzeln.',
+    roots:'Ukrainische Wurzeln · Farm-frisch',
+    sending:'Senden…', error:'Etwas hat nicht geklappt — bitte noch einmal versuchen.'
+  },
+  en: {
+    kicker:'Coming Soon · Vienna', h1:'Opening soon in Vienna', tag:'Cakes · Breakfast · Coffee',
+    card_h:'You’re invited to our opening',
+    card_p:'Leave your email — we’ll send you the opening date and your personal invitation.',
+    ph:'you@email.com', btn:'Get invited',
+    success:'Thank you! We’ll email you as soon as the opening date is set.',
+    note:'No spam — just the invitation.',
+    milk:'Everything begins with milk.',
+    about_p:'Farm-fresh milk — in every cake, every coffee and every breakfast. Handcrafted, farm-fresh, with Ukrainian roots.',
+    roots:'Ukrainian roots · Farm-fresh',
+    sending:'Sending…', error:'Something went wrong — please try again.'
+  },
+  ua: {
+    kicker:'Скоро · Відень', h1:'Незабаром відкриваємося у Відні', tag:'Торти · Сніданки · Кава',
+    card_h:'Запрошуємо тебе на відкриття',
+    card_p:'Залиш свій e-mail — ми повідомимо дату відкриття й надішлемо особисте запрошення.',
+    ph:'tviy@email.com', btn:'Отримати запрошення',
+    success:'Дякуємо! Напишемо, щойно дата відкриття буде відома.',
+    note:'Без спаму — лише запрошення.',
+    milk:'Все починається з молока.',
+    about_p:'Фермерське молоко — в кожному торті, кожній чашці кави та кожному сніданку. Ручна робота, фермерська свіжість, українське коріння.',
+    roots:'Українське коріння · Фермерська свіжість',
+    sending:'Надсилаємо…', error:'Щось пішло не так — спробуй ще раз.'
+  },
+  cz: {
+    kicker:'Coming Soon · Vídeň', h1:'Brzy otevíráme ve Vídni', tag:'Dorty · Snídaně · Káva',
+    card_h:'Zveme tě na otevření',
+    card_p:'Zanech svůj e-mail — pošleme ti datum otevření a osobní pozvánku.',
+    ph:'tvuj@email.cz', btn:'Chci pozvánku',
+    success:'Děkujeme! Jakmile bude datum otevření jasné, napíšeme ti.',
+    note:'Žádný spam — jen pozvánka.',
+    milk:'Všechno začíná mlékem.',
+    about_p:'Čerstvé mléko z farmy — v každém dortu, každé kávě i snídani. Ruční výroba, čerstvé z farmy, ukrajinské kořeny.',
+    roots:'Ukrajinské kořeny · Čerstvé z farmy',
+    sending:'Odesíláme…', error:'Něco se nepovedlo — zkus to prosím znovu.'
+  }
+};
+
+const LANGS = ['de','en','ua','cz'];
+function getLang(){
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q && LANGS.includes(q)) return q;
+  const saved = localStorage.getItem('fm_lang');
+  if (saved && LANGS.includes(saved)) return saved;
+  return 'de';
+}
+function apply(lang){
+  const t = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t[el.dataset.i18n] || '');
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t[el.dataset.i18nPh] || '');
+  document.querySelectorAll('#langs button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  localStorage.setItem('fm_lang', lang);
+}
+const langsBox = document.getElementById('langs');
+LANGS.forEach(l => {
+  const b = document.createElement('button');
+  b.textContent = l.toUpperCase(); b.dataset.lang = l;
+  b.onclick = () => apply(l);
+  langsBox.appendChild(b);
+});
+apply(getLang());
+
+const form = document.getElementById('invite-form');
+const btn = document.getElementById('submit-btn');
+const successBox = document.getElementById('success');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const t = I18N[getLang()];
+  btn.disabled = true; btn.textContent = t.sending;
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/farmersmilksmm+austria@gmail.com', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        email: form.email.value,
+        _subject: "Farmer's Milk Wien — neue Einladung",
+        lang: getLang(),
+        source: 'farmersmilk.at landing'
+      })
+    });
+    if (!res.ok) throw new Error('send failed');
+    form.style.display = 'none';
+    successBox.textContent = t.success;
+    successBox.style.display = 'block';
+  } catch (err) {
+    btn.disabled = false; btn.textContent = t.btn;
+    alert(t.error);
+  }
+});
+</script>
+</body>
+</html>
