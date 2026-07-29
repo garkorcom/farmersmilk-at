@@ -21,7 +21,7 @@
   .langs{position:absolute;top:14px;right:16px;display:flex;gap:6px;z-index:20}
   .langs button{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;padding:7px 11px;border:none;border-radius:20px;background:rgba(255,255,255,.85);color:var(--matcha-deep);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
   .langs button.active,.langs button:hover{background:var(--matcha-deep);color:#fff}
-  .hero{position:relative;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:96px 22px 170px;text-align:center;overflow:hidden}
+  .hero{position:relative;min-height:76vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:76px 22px 190px;text-align:center;overflow:hidden}
   .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
   .hero .poster{background:url('../../assets/photo_honey_cake.jpg') center 38%/cover no-repeat}
   .hero video{opacity:0;transition:opacity 1s}
@@ -36,7 +36,7 @@
   .marquee .track{display:flex;width:max-content;animation:scroll 26s linear infinite}
   .marquee span{font-family:'Vollkorn SC',serif;font-size:16px;letter-spacing:.14em;white-space:nowrap;padding-right:14px}
   @keyframes scroll{to{transform:translateX(-50%)}}
-  .invite-wrap{max-width:460px;width:calc(100% - 44px);margin:-90px auto 0;position:relative;z-index:7}
+  .invite-wrap{max-width:460px;width:calc(100% - 44px);margin:-160px auto 0;position:relative;z-index:7}
   .invite-card{background:var(--cream);border-radius:22px;padding:30px 26px;box-shadow:0 18px 50px rgba(37,34,32,.28);border-top:6px solid var(--coral);text-align:center}
   .invite-card h2{font-family:'Vollkorn SC',serif;font-size:20px;margin-bottom:10px;text-wrap:balance}
   .invite-card p{font-size:14.5px;color:rgba(37,34,32,.72);margin-bottom:20px;line-height:1.55}
@@ -76,6 +76,14 @@
   .cta .ig{margin-top:26px;font-size:15px;color:var(--ink)}
   .cta .ig a{background:none;padding:0;border-radius:0;color:var(--ink);font-weight:700;border-bottom:2px solid var(--coral-deep)}
   .cta .ig a:hover{color:var(--coral-deep);background:none}
+  .social{padding:44px 24px 8px;text-align:center;background:var(--cream)}
+  .social .s-title{font-family:'Vollkorn SC',serif;font-size:20px;margin-bottom:18px}
+  .social .s-main{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .social .pill{font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;padding:11px 20px;border-radius:999px;background:var(--ink);color:var(--cream);text-decoration:none;transition:opacity .2s}
+  .social .pill:hover{opacity:.8}
+  .social .s-other-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--matcha-deep);margin-bottom:12px;font-weight:600}
+  .social .s-other{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+  .social .s-other a{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--coral);padding-bottom:1px}
   footer{padding:20px;text-align:center;font-size:13px;color:rgba(37,34,32,.6)}
   footer .motto{font-family:'Vollkorn SC',serif;font-size:14px;letter-spacing:.05em;margin-bottom:4px}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
@@ -112,7 +120,7 @@
       <div class="incentive" data-i18n="incentive"></div>
       <div class="qr-block">
         <img src="../../assets/qr_site.png" alt="QR — farmersmilk.at">
-        <div class="qr-txt"><span data-i18n="qr_txt"></span><br><span class="qr-url">farmersmilk.at</span></div>
+        <div class="qr-txt"><span data-i18n="qr_txt"></span></div>
       </div>
       <div class="form-note" data-i18n="note"></div>
     </div>
@@ -140,7 +148,20 @@
   <section class="cta">
     <h3 data-i18n="cta_h"></h3>
     <a href="#top" data-i18n="cta_b"></a>
-    <div class="ig"><span data-i18n="follow"></span> <a href="https://www.instagram.com/farmersmilk.austria/" target="_blank" rel="noopener">@farmersmilk.austria</a></div>
+  </section>
+
+  <section class="social">
+    <div class="s-title" data-i18n="follow"></div>
+    <div class="s-main">
+      <a class="pill" href="https://www.instagram.com/farmersmilk.austria/" target="_blank" rel="noopener">Instagram</a>
+      <a class="pill" href="https://www.tiktok.com/@farmersmilk.austria" target="_blank" rel="noopener">TikTok</a>
+      <a class="pill" href="https://www.facebook.com/farmersmilk.austria" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <div class="s-other-label" data-i18n="social_other"></div>
+    <div class="s-other">
+      <a href="https://www.instagram.com/farmers_milk.miami/" target="_blank" rel="noopener">@farmers_milk.miami</a>
+      <a href="https://www.instagram.com/farmers.milk.chicago/" target="_blank" rel="noopener">@farmers.milk.chicago</a>
+    </div>
   </section>
 
   <footer>
@@ -163,7 +184,7 @@ const I18N = {
     milk:'Alles beginnt mit Milch.',
     about_p:'Frische Milch vom Hof – in jedem Kuchen, jedem Kaffee und jedem Frühstück. Ehrlich, handgemacht, mit ukrainischen Wurzeln.',
     cta_h:'Bald in Wien – sei von Anfang an dabei.', cta_b:'Einladung sichern',
-    follow:'Folge uns:', roots:'Ukrainische Wurzeln · Frisch vom Hof, vom ersten Tag an',
+    follow:'Folge uns:', social_other:'Unsere Cafés in den USA:', roots:'Ukrainische Wurzeln · Frisch vom Hof, vom ersten Tag an',
     sending:'Wird gesendet…', error:'Etwas hat nicht geklappt — bitte noch einmal versuchen.',
     marquee:'ERÖFFNET BALD IN WIEN'
   },
@@ -180,7 +201,7 @@ const I18N = {
     milk:'It all starts with milk.',
     about_p:'Farm-fresh milk — in every cake, every coffee, and every breakfast. Made by hand, with Ukrainian roots.',
     cta_h:'Opening soon in Vienna — be there from day one.', cta_b:'Get my invitation',
-    follow:'Follow us:', roots:'Ukrainian roots · Farm-fresh since day one',
+    follow:'Follow us:', social_other:'Our cafés in the USA:', roots:'Ukrainian roots · Farm-fresh since day one',
     sending:'Sending…', error:'Something went wrong — please try again.',
     marquee:'OPENING SOON IN VIENNA'
   },
@@ -197,7 +218,7 @@ const I18N = {
     milk:'Все починається з молока.',
     about_p:'Фермерське молоко — у кожному торті, кожній чашці кави та кожному сніданку. Ручна робота, фермерська свіжість, українське коріння.',
     cta_h:'Незабаром у Відні — будь із нами від першого дня.', cta_b:'Отримати запрошення',
-    follow:'Стеж за нами:', roots:'Українське коріння · Фермерська свіжість з першого дня',
+    follow:'Стеж за нами:', social_other:'Наші кафе в США:', roots:'Українське коріння · Фермерська свіжість з першого дня',
     sending:'Надсилаємо…', error:'Щось пішло не так — спробуй ще раз.',
     marquee:'НЕЗАБАРОМ У ВІДНІ'
   },
@@ -214,7 +235,7 @@ const I18N = {
     milk:'Všechno začíná mlékem.',
     about_p:'Čerstvé mléko z farmy — v každém dortu, každé kávě i snídani. Ruční výroba, farmářská čerstvost, ukrajinské kořeny.',
     cta_h:'Brzy ve Vídni — buď u toho od prvního dne.', cta_b:'Chci pozvánku',
-    follow:'Sleduj nás:', roots:'Ukrajinské kořeny · Čerstvé z farmy od prvního dne',
+    follow:'Sleduj nás:', social_other:'Naše kavárny v USA:', roots:'Ukrajinské kořeny · Čerstvé z farmy od prvního dne',
     sending:'Odesíláme…', error:'Něco se nepovedlo — zkus to prosím znovu.',
     marquee:'BRZY VE VÍDNI'
   }
