@@ -5,96 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Farmer's Milk — Coming Soon · Wien</title>
 <meta name="description" content="Farm-fresh Bakery Café. Eröffnet bald in Wien — hinterlasse deine E-Mail und erfahre das Eröffnungsdatum zuerst.">
+<meta property="og:title" content="Farmer's Milk — Eröffnet bald in Wien">
+<meta property="og:description" content="Farm-fresh Bakery Café. Sichere dir deine Einladung zur Eröffnung.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/photo_honey_cake.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600&family=Vollkorn:ital,wght@0,500;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#F4EFE6; --ink:#252220; --ink-soft:rgba(37,34,32,.62);
+    --cream:#EEE7DA; --ink:#252220; --ink-soft:rgba(37,34,32,.62);
     --accent:#E07B5E; --line:rgba(37,34,32,.14);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
   body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
 
-  .top{display:flex;align-items:center;justify-content:space-between;max-width:1060px;margin:0 auto;padding:26px 24px}
+  .top{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:26px 24px}
   .top img{height:44px}
   .langs{display:flex;gap:18px}
   .langs button{font-family:'Montserrat',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;background:none;border:none;color:var(--ink-soft);cursor:pointer;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s}
   .langs button.active{color:var(--ink);border-bottom-color:var(--ink)}
   .langs button:hover{color:var(--ink)}
 
-  main{max-width:640px;margin:0 auto;padding:6vh 24px 0;text-align:center}
+  /* EDITORIAL hero: text left, photo right */
+  .hero{max-width:1120px;margin:0 auto;padding:5vh 24px 0;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
   .kicker{font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
-  h1{font-family:'Vollkorn SC',serif;font-weight:600;font-size:clamp(34px,6.4vw,52px);line-height:1.14;max-width:16ch;margin:0 auto 18px;text-wrap:balance}
-  .tagline{font-size:16px;color:var(--ink-soft);letter-spacing:.03em;margin-bottom:44px}
+  h1{font-family:'Vollkorn SC',serif;font-weight:600;font-size:clamp(34px,5.4vw,56px);line-height:1.12;margin-bottom:18px;text-wrap:balance}
+  .tagline{font-size:16px;color:var(--ink-soft);letter-spacing:.03em;margin-bottom:34px}
+  .hero-photo{position:relative}
+  .hero-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 40%;display:block;border-radius:4px}
 
-  .hero-photo{max-width:1060px;margin:0 auto;padding:0 24px}
-  .hero-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 42%;display:block;border-radius:4px}
-
-  .invite{max-width:520px;margin:64px auto 0;padding:0 24px;text-align:center}
-  .invite h2{font-family:'Vollkorn SC',serif;font-weight:600;font-size:24px;margin-bottom:12px}
-  .invite p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin-bottom:28px}
-  form{display:flex;gap:0;border-bottom:1px solid var(--ink);padding-bottom:10px}
+  form{display:flex;gap:0;align-items:center;border-bottom:1px solid var(--ink);padding-bottom:10px;max-width:460px}
   input[type=email]{flex:1;font-family:'Montserrat',sans-serif;font-size:16px;background:none;border:none;outline:none;color:var(--ink);padding:8px 0}
   input[type=email]::placeholder{color:var(--ink-soft)}
-  .submit{font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;color:var(--accent);cursor:pointer;padding:8px 0 8px 16px;transition:opacity .2s;white-space:nowrap}
+  .submit{font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);border:none;border-radius:999px;color:var(--cream);cursor:pointer;padding:12px 22px;margin-left:14px;transition:opacity .2s;white-space:nowrap}
   .submit:hover{opacity:.65}
   .submit:disabled{opacity:.4;cursor:wait}
+  .invite-p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:8px;max-width:42ch}
+  .incentive{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:22px}
   .form-note{font-size:12px;color:var(--ink-soft);margin-top:14px}
   .success{display:none;margin-top:6px;font-size:15px;font-weight:600;color:var(--ink)}
 
-  .about{max-width:520px;margin:72px auto 0;padding:0 24px;text-align:center}
-  .about .milk{font-family:'Vollkorn SC',serif;font-size:22px;line-height:1.4;text-wrap:balance}
-  .about p{margin-top:12px;font-size:14px;color:var(--ink-soft);line-height:1.65}
+  /* QR block — email window AND QR code together */
+  .qr-block{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;gap:18px;max-width:460px}
+  .qr-block img{width:96px;height:96px;flex:none;border-radius:4px}
+  .qr-block .qr-txt{font-size:13.5px;color:var(--ink-soft);line-height:1.5;text-align:left}
+  .qr-block .qr-url{font-family:'Vollkorn SC',serif;font-size:16px;color:var(--ink);letter-spacing:.03em}
 
-  .cta{margin:64px auto 0;padding:0 24px;text-align:center}
+  /* editorial duo */
+  .duo{max-width:1120px;margin:84px auto 0;padding:64px 24px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
+  .duo img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border-radius:4px}
+  .duo .milk{font-family:'Vollkorn',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.3;text-wrap:balance}
+  .duo p{margin-top:16px;font-size:15px;color:var(--ink-soft);line-height:1.65;max-width:46ch}
+  .duo .sig{margin-top:22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .cta{max-width:1120px;margin:72px auto 0;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .cta .soon{font-family:'Vollkorn SC',serif;font-size:20px}
   .cta a{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:opacity .2s}
   .cta a:hover{opacity:.6}
 
-  footer{max-width:1060px;margin:80px auto 0;padding:22px 24px 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--ink-soft)}
+  footer{max-width:1120px;margin:56px auto 0;padding:22px 24px 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--ink-soft)}
   footer .motto{font-family:'Vollkorn SC',serif;font-size:13px;letter-spacing:.05em;color:var(--ink)}
 
-  @media (max-width:520px){
-    .top img{height:36px}
-    form{flex-direction:column;gap:10px;border-bottom:none}
-    input[type=email]{border-bottom:1px solid var(--ink);padding:10px 0;text-align:center}
-    .submit{border:1px solid var(--ink);border-radius:999px;padding:12px 0;width:100%}
+  @media (max-width:760px){
+    .hero,.duo{grid-template-columns:1fr}
+    .hero-photo{order:-1}
+    .hero-photo img{aspect-ratio:16/9;max-height:48vh}
   }
 </style>
 </head>
 <body>
   <div class="top">
-    <img src="assets/logo-dark.png" alt="Farmer's Milk">
+    <img src="assets/logo-coral.png" alt="Farmer's Milk">
     <div class="langs" id="langs"></div>
   </div>
 
-  <main>
-    <div class="kicker" data-i18n="kicker"></div>
-    <h1 data-i18n="h1"></h1>
-    <div class="tagline">Farm-fresh Bakery Café · <span data-i18n="tag"></span></div>
+  <main class="hero">
+    <div>
+      <div class="kicker" data-i18n="kicker"></div>
+      <h1 data-i18n="h1"></h1>
+      <div class="tagline">Farm-fresh Bakery Café · <span data-i18n="tag"></span></div>
+
+      <p class="invite-p" data-i18n="card_p"></p>
+      <div class="incentive" data-i18n="incentive"></div>
+      <form id="invite-form">
+        <input type="email" name="email" data-i18n-ph="ph" required autocomplete="email">
+        <button type="submit" class="submit" id="submit-btn" data-i18n="btn"></button>
+      </form>
+      <div class="success" id="success"></div>
+      <div class="form-note" data-i18n="note"></div>
+
+      <div class="qr-block">
+        <img src="assets/qr_site.png" alt="QR — farmersmilk.at">
+        <div class="qr-txt"><span data-i18n="qr_txt"></span><br><span class="qr-url">farmersmilk.at</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/photo_honey_cake.jpg" alt="Medovik — Farmer's Milk">
+    </div>
   </main>
 
-  <div class="hero-photo">
-    <img src="assets/photo_honey_cake.jpg" alt="Medovik — Farmer's Milk">
-  </div>
-
-  <section class="invite">
-    <h2 data-i18n="card_h"></h2>
-    <p data-i18n="card_p"></p>
-    <form id="invite-form">
-      <input type="email" name="email" data-i18n-ph="ph" required autocomplete="email">
-      <button type="submit" class="submit" id="submit-btn" data-i18n="btn"></button>
-    </form>
-    <div class="success" id="success"></div>
-    <div class="form-note" data-i18n="note"></div>
-  </section>
-
-  <section class="about">
-    <div class="milk" data-i18n="milk"></div>
-    <p data-i18n="about_p"></p>
+  <section class="duo">
+    <img src="assets/photo_syrniki.jpg" alt="Syrniki — Farmer's Milk">
+    <div>
+      <div class="milk" data-i18n="milk"></div>
+      <p data-i18n="about_p"></p>
+      <div class="sig">Farmer's Milk · Wien</div>
+    </div>
   </section>
 
   <div class="cta">
+    <div class="soon" data-i18n="cta_h"></div>
     <a href="https://www.instagram.com/farmersmilk.austria/" target="_blank" rel="noopener">@farmersmilk.austria</a>
   </div>
 
@@ -110,10 +130,13 @@ const I18N = {
     card_h:'Wir laden dich zur Eröffnung ein',
     card_p:'Hinterlasse deine E-Mail — wir schicken dir das Eröffnungsdatum und deine persönliche Einladung.',
     ph:'deine@email.at', btn:'Einladung sichern',
+    incentive:'☕ Die ersten 100 Gäste — Kaffee aufs Haus.',
+    qr_txt:'Scannen & teilen — die Einladung geht auch an Freunde:',
     success:'Danke! Wir schreiben dir, sobald das Eröffnungsdatum feststeht.',
     note:'Kein Spam — nur die Einladung.',
-    milk:'Alles beginnt mit Milch.',
+    milk:'«Alles beginnt mit Milch.»',
     about_p:'Frische Milch vom Hof — in jedem Kuchen, jedem Kaffee und jedem Frühstück. Handgemacht, farm-frisch, mit ukrainischen Wurzeln.',
+    cta_h:'Bald in Wien — sei dabei.',
     roots:'Ukrainische Wurzeln · Farm-frisch',
     sending:'Senden…', error:'Etwas hat nicht geklappt — bitte noch einmal versuchen.'
   },
@@ -122,10 +145,13 @@ const I18N = {
     card_h:'You’re invited to our opening',
     card_p:'Leave your email — we’ll send you the opening date and your personal invitation.',
     ph:'you@email.com', btn:'Get invited',
+    incentive:'☕ First 100 guests — coffee on us.',
+    qr_txt:'Scan & share — friends get invited too:',
     success:'Thank you! We’ll email you as soon as the opening date is set.',
     note:'No spam — just the invitation.',
-    milk:'Everything begins with milk.',
+    milk:'«Everything begins with milk.»',
     about_p:'Farm-fresh milk — in every cake, every coffee and every breakfast. Handcrafted, farm-fresh, with Ukrainian roots.',
+    cta_h:'Opening soon in Vienna.',
     roots:'Ukrainian roots · Farm-fresh',
     sending:'Sending…', error:'Something went wrong — please try again.'
   },
@@ -134,10 +160,13 @@ const I18N = {
     card_h:'Запрошуємо тебе на відкриття',
     card_p:'Залиш свій e-mail — ми повідомимо дату відкриття й надішлемо особисте запрошення.',
     ph:'tviy@email.com', btn:'Отримати запрошення',
+    incentive:'☕ Першим 100 гостям — кава за наш рахунок.',
+    qr_txt:'Скануй і ділись — запрошення також для друзів:',
     success:'Дякуємо! Напишемо, щойно дата відкриття буде відома.',
     note:'Без спаму — лише запрошення.',
-    milk:'Все починається з молока.',
+    milk:'«Все починається з молока.»',
     about_p:'Фермерське молоко — в кожному торті, кожній чашці кави та кожному сніданку. Ручна робота, фермерська свіжість, українське коріння.',
+    cta_h:'Незабаром у Відні.',
     roots:'Українське коріння · Фермерська свіжість',
     sending:'Надсилаємо…', error:'Щось пішло не так — спробуй ще раз.'
   },
@@ -146,10 +175,13 @@ const I18N = {
     card_h:'Zveme tě na otevření',
     card_p:'Zanech svůj e-mail — pošleme ti datum otevření a osobní pozvánku.',
     ph:'tvuj@email.cz', btn:'Chci pozvánku',
+    incentive:'☕ Prvních 100 hostů — káva na náš účet.',
+    qr_txt:'Naskenuj a sdílej — pozvánka platí i pro přátele:',
     success:'Děkujeme! Jakmile bude datum otevření jasné, napíšeme ti.',
     note:'Žádný spam — jen pozvánka.',
-    milk:'Všechno začíná mlékem.',
+    milk:'«Všechno začíná mlékem.»',
     about_p:'Čerstvé mléko z farmy — v každém dortu, každé kávě i snídani. Ruční výroba, čerstvé z farmy, ukrajinské kořeny.',
+    cta_h:'Brzy ve Vídni.',
     roots:'Ukrajinské kořeny · Čerstvé z farmy',
     sending:'Odesíláme…', error:'Něco se nepovedlo — zkus to prosím znovu.'
   }
@@ -161,6 +193,10 @@ function getLang(){
   if (q && LANGS.includes(q)) return q;
   const saved = localStorage.getItem('fm_lang');
   if (saved && LANGS.includes(saved)) return saved;
+  const nav = (navigator.language || 'de').toLowerCase();
+  if (nav.startsWith('uk')) return 'ua';
+  if (nav.startsWith('cs')) return 'cz';
+  if (nav.startsWith('en')) return 'en';
   return 'de';
 }
 function apply(lang){
