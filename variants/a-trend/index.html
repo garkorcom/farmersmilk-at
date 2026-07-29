@@ -186,7 +186,7 @@ const I18N = {
     card_h:'Wir laden dich zur Eröffnung ein',
     card_p:'Hinterlass deine E-Mail-Adresse – wir schicken dir das Eröffnungsdatum und deine persönliche Einladung.',
     ph:'deine@email.at', btn:'Einladung sichern',
-    incentive:'☕ Die ersten 100 Gäste – der Kaffee geht aufs Haus.',
+    incentive:'🍰 Die ersten 100 Gäste – unser Signature-Dessert geht aufs Haus.',
     qr_txt:'Scannen & teilen – auch deine Freunde bekommen eine Einladung:',
     success:'✅ Danke! Wir schreiben dir, sobald das Eröffnungsdatum feststeht. 🤍',
     note:'Kein Spam – nur die Einladung. Versprochen.',
@@ -196,6 +196,7 @@ const I18N = {
     cta_h:'Bald in Wien – sei von Anfang an dabei.', cta_b:'Einladung sichern',
     follow:'Folge uns:', social_other:'Unsere Cafés in den USA:', roots:'Ukrainische Wurzeln · Frisch vom Hof, vom ersten Tag an',
     sending:'Wird gesendet…', error:'Etwas hat nicht geklappt — bitte noch einmal versuchen.',
+    auto:'Willkommen bei Farmer\'s Milk! 🤍 Du bist auf der Gästeliste. Zeig diese E-Mail bei der Eröffnung – unser Signature-Dessert geht aufs Haus. Wir schreiben dir das Datum. Bis bald in Wien!',
     marquee:'ERÖFFNET BALD IN WIEN'
   },
   en: {
@@ -203,7 +204,7 @@ const I18N = {
     card_h:'You’re invited to our opening',
     card_p:'Leave your email — we’ll send you the opening date and your personal invitation.',
     ph:'you@example.com', btn:'Get my invitation',
-    incentive:'☕ First 100 guests — coffee’s on us.',
+    incentive:'🍰 First 100 guests — our signature dessert’s on us.',
     qr_txt:'Scan & share — your friends are invited too:',
     success:'✅ Thank you! We’ll email you the moment the opening date is set. 🤍',
     note:'No spam — just the invitation. Promise.',
@@ -213,6 +214,7 @@ const I18N = {
     cta_h:'Opening soon in Vienna — be there from day one.', cta_b:'Get my invitation',
     follow:'Follow us:', social_other:'Our cafés in the USA:', roots:'Ukrainian roots · Farm-fresh since day one',
     sending:'Sending…', error:'Something went wrong — please try again.',
+    auto:'Welcome to Farmer\'s Milk! 🤍 You\'re on the guest list. Show this email at the opening – your signature dessert is on us. We\'ll send you the date. See you soon in Vienna!',
     marquee:'OPENING SOON IN VIENNA'
   },
   ua: {
@@ -220,7 +222,7 @@ const I18N = {
     card_h:'Запрошуємо тебе на відкриття',
     card_p:'Залиш свій e-mail — ми повідомимо тобі дату відкриття й надішлемо особисте запрошення.',
     ph:'tviy@email.com', btn:'Отримати запрошення',
-    incentive:'☕ Першим 100 гостям — пригощаємо кавою.',
+    incentive:'🍰 Першим 100 гостям — пригощаємо фірмовим десертом.',
     qr_txt:'Скануй і ділись — запрошення також для друзів:',
     success:'✅ Дякуємо! Напишемо, щойно стане відома дата відкриття. 🤍',
     note:'Без спаму — лише запрошення. Обіцяємо.',
@@ -230,6 +232,7 @@ const I18N = {
     cta_h:'Незабаром у Відні — будь із нами від першого дня.', cta_b:'Отримати запрошення',
     follow:'Стеж за нами:', social_other:'Наші кафе в США:', roots:'Українське коріння · Фермерська свіжість з першого дня',
     sending:'Надсилаємо…', error:'Щось пішло не так — спробуй ще раз.',
+    auto:'Вітаємо у Farmer\'s Milk! 🤍 Ти у списку гостей. Покажи цього листа на відкритті – пригощаємо фірмовим десертом. Ми напишемо дату. До зустрічі у Відні!',
     marquee:'НЕЗАБАРОМ У ВІДНІ'
   },
   cz: {
@@ -237,7 +240,7 @@ const I18N = {
     card_h:'Zveme tě na otevření',
     card_p:'Nech nám svůj e-mail — pošleme ti datum otevření a osobní pozvánku.',
     ph:'tvuj@email.cz', btn:'Chci pozvánku',
-    incentive:'☕ Prvních 100 hostů — káva na nás.',
+    incentive:'🍰 Prvních 100 hostů — náš dezert na nás.',
     qr_txt:'Naskenuj a sdílej — pozvánka platí i pro přátele:',
     success:'✅ Děkujeme! Jakmile budeme znát datum otevření, napíšeme ti. 🤍',
     note:'Žádný spam — jen pozvánka. Slibujeme.',
@@ -247,6 +250,7 @@ const I18N = {
     cta_h:'Brzy ve Vídni — buď u toho od prvního dne.', cta_b:'Chci pozvánku',
     follow:'Sleduj nás:', social_other:'Naše kavárny v USA:', roots:'Ukrajinské kořeny · Čerstvé z farmy od prvního dne',
     sending:'Odesíláme…', error:'Něco se nepovedlo — zkus to prosím znovu.',
+    auto:'Vítej u Farmer\'s Milk! 🤍 Jsi na seznamu hostů. Ukaž tento e-mail při otevření – náš dezert je na nás. Napíšeme ti datum. Brzy ve Vídni!',
     marquee:'BRZY VE VÍDNI'
   }
 };
@@ -309,6 +313,7 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify({
         email: form.email.value,
         _subject: "🐄 Farmer's Milk Wien — neue Einladung",
+        _autoresponse: t.auto,
         lang: getLang(),
         source: 'farmersmilk.at landing'
       })
