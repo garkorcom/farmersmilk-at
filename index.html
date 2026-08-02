@@ -41,8 +41,9 @@
   .invite-card h2{font-family:'Vollkorn SC',serif;font-size:20px;margin-bottom:10px;text-wrap:balance}
   .invite-card p{font-size:14.5px;color:rgba(37,34,32,.72);margin-bottom:20px;line-height:1.55}
   form{display:flex;flex-direction:column;gap:12px}
-  input[type=email]{font-family:'Montserrat',sans-serif;font-size:16px;padding:15px 18px;border:2px solid rgba(37,34,32,.10);border-radius:12px;outline:none;transition:border-color .2s;background:#fff}
-  input[type=email]:focus{border-color:var(--coral)}
+  .name-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .invite-card input{width:100%;min-width:0;font-family:'Montserrat',sans-serif;font-size:16px;padding:15px 18px;border:2px solid rgba(37,34,32,.10);border-radius:12px;outline:none;transition:border-color .2s;background:#fff}
+  .invite-card input:focus{border-color:var(--coral)}
   .submit{font-family:'Vollkorn SC',serif;font-size:18px;letter-spacing:.03em;padding:15px 18px;border:none;border-radius:12px;background:var(--coral);color:var(--ink);cursor:pointer;transition:background .2s,transform .1s}
   .submit:hover{background:var(--coral-deep);color:#fff}
   .submit:active{transform:scale(.98)}
@@ -71,14 +72,15 @@
   .bento figure:hover img{transform:scale(1.05)}
   .bento figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 14px;font-family:'Vollkorn SC',serif;font-size:16px;color:#fff;background:linear-gradient(transparent,rgba(28,20,14,.68));letter-spacing:.03em}
   @media (max-width:520px){
+    .name-row{grid-template-columns:1fr}
     .bento{grid-template-rows:repeat(2,minmax(120px,30vw))}
     .bento figcaption{font-size:13px;padding:20px 10px 10px}
   }
   .about{max-width:560px;margin:52px auto 0;padding:0 24px;text-align:center}
   .about .milk{font-family:'Vollkorn SC',serif;font-size:clamp(21px,3.4vw,27px);line-height:1.35;color:var(--matcha-deep);text-wrap:balance}
   .about p{margin-top:14px;font-size:15px;color:rgba(37,34,32,.72);line-height:1.6}
-  .milk-band{margin:48px 0 0;height:clamp(180px,34vh,320px);overflow:hidden}
-  .milk-band img{width:100%;height:100%;object-fit:cover;object-position:center 62%;display:block}
+  .milk-band{position:relative;margin:48px 0 0;height:clamp(180px,34vh,320px);overflow:hidden;background:url('assets/milk_pour_matcha_poster.jpg') center 31%/cover no-repeat}
+  .milk-band video{width:100%;height:100%;object-fit:cover;object-position:center 31%;display:block}
   .cta{margin:56px 0 0;padding:44px 24px 50px;text-align:center;background:var(--matcha)}
   .cta h3{font-family:'Vollkorn SC',serif;font-size:clamp(22px,3.6vw,30px);margin-bottom:18px;text-wrap:balance}
   .cta a{display:inline-block;font-family:'Vollkorn SC',serif;font-size:18px;padding:15px 34px;border-radius:12px;background:var(--coral);color:var(--ink);text-decoration:none;transition:background .2s,transform .1s}
@@ -127,6 +129,10 @@
       <h2 data-i18n="card_h"></h2>
       <p data-i18n="card_p"></p>
       <form id="invite-form">
+        <div class="name-row">
+          <input type="text" name="first_name" data-i18n-ph="first_ph" required autocomplete="given-name" maxlength="80">
+          <input type="text" name="last_name" data-i18n-ph="last_ph" required autocomplete="family-name" maxlength="80">
+        </div>
         <input type="email" name="email" data-i18n-ph="ph" required autocomplete="email">
         <button type="submit" class="submit" id="submit-btn" data-i18n="btn"></button>
       </form>
@@ -166,7 +172,9 @@
   </section>
 
   <section class="milk-band reveal">
-    <img src="assets/photo_milk_glass.jpg" alt="Frische Milch — Farmer's Milk">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/milk_pour_matcha_poster.jpg" aria-label="Frische Milch und Matcha werden eingeschenkt">
+      <source src="assets/milk_pour_matcha.mp4" type="video/mp4">
+    </video>
   </section>
 
   <section class="cta">
@@ -185,7 +193,7 @@ const I18N = {
     kicker:'Coming Soon', h1:'Eröffnet bald in Wien 🇦🇹', tag:'Kuchen · Frühstück · Kaffee',
     card_h:'Wir laden dich zur Eröffnung ein',
     card_p:'Hinterlass deine E-Mail-Adresse – wir schicken dir das Eröffnungsdatum und deine persönliche Einladung.',
-    ph:'deine@email.at', btn:'Einladung sichern',
+    first_ph:'Vorname', last_ph:'Nachname', ph:'deine@email.at', btn:'Einladung sichern',
     incentive:'🍰 Die ersten 100 Gäste – unser Signature-Dessert geht aufs Haus.',
     qr_txt:'Scannen & teilen – auch deine Freunde bekommen eine Einladung:',
     success:'✅ Danke! Wir schreiben dir, sobald das Eröffnungsdatum feststeht. 🤍',
@@ -196,14 +204,13 @@ const I18N = {
     cta_h:'Bald in Wien – sei von Anfang an dabei.', cta_b:'Einladung sichern',
     follow:'Folge uns:', social_other:'Unsere Cafés in den USA:', roots:'Ukrainische Wurzeln · Frisch vom Hof, vom ersten Tag an',
     sending:'Wird gesendet…', error:'Etwas hat nicht geklappt — bitte noch einmal versuchen.',
-    auto:'Willkommen bei Farmer\'s Milk! 🤍 Du bist auf der Gästeliste. Zeig diese E-Mail bei der Eröffnung – unser Signature-Dessert geht aufs Haus. Wir schreiben dir das Datum. Bis bald in Wien!',
     marquee:'ERÖFFNET BALD IN WIEN'
   },
   en: {
     kicker:'Coming Soon', h1:'Opening soon in Vienna 🇦🇹', tag:'Cakes · Breakfast · Coffee',
     card_h:'You’re invited to our opening',
     card_p:'Leave your email — we’ll send you the opening date and your personal invitation.',
-    ph:'you@example.com', btn:'Get my invitation',
+    first_ph:'First name', last_ph:'Last name', ph:'you@example.com', btn:'Get my invitation',
     incentive:'🍰 First 100 guests — our signature dessert’s on us.',
     qr_txt:'Scan & share — your friends are invited too:',
     success:'✅ Thank you! We’ll email you the moment the opening date is set. 🤍',
@@ -214,14 +221,13 @@ const I18N = {
     cta_h:'Opening soon in Vienna — be there from day one.', cta_b:'Get my invitation',
     follow:'Follow us:', social_other:'Our cafés in the USA:', roots:'Ukrainian roots · Farm-fresh since day one',
     sending:'Sending…', error:'Something went wrong — please try again.',
-    auto:'Welcome to Farmer\'s Milk! 🤍 You\'re on the guest list. Show this email at the opening – your signature dessert is on us. We\'ll send you the date. See you soon in Vienna!',
     marquee:'OPENING SOON IN VIENNA'
   },
   ua: {
     kicker:'Скоро відкриття', h1:'Незабаром відкриваємося у Відні 🇦🇹', tag:'Торти · Сніданки · Кава',
     card_h:'Запрошуємо тебе на відкриття',
     card_p:'Залиш свій e-mail — ми повідомимо тобі дату відкриття й надішлемо особисте запрошення.',
-    ph:'tviy@email.com', btn:'Отримати запрошення',
+    first_ph:'Ім’я', last_ph:'Прізвище', ph:'tviy@email.com', btn:'Отримати запрошення',
     incentive:'🍰 Першим 100 гостям — пригощаємо фірмовим десертом.',
     qr_txt:'Скануй і ділись — запрошення також для друзів:',
     success:'✅ Дякуємо! Напишемо, щойно стане відома дата відкриття. 🤍',
@@ -232,14 +238,13 @@ const I18N = {
     cta_h:'Незабаром у Відні — будь із нами від першого дня.', cta_b:'Отримати запрошення',
     follow:'Стеж за нами:', social_other:'Наші кафе в США:', roots:'Українське коріння · Фермерська свіжість з першого дня',
     sending:'Надсилаємо…', error:'Щось пішло не так — спробуй ще раз.',
-    auto:'Вітаємо у Farmer\'s Milk! 🤍 Ти у списку гостей. Покажи цього листа на відкритті – пригощаємо фірмовим десертом. Ми напишемо дату. До зустрічі у Відні!',
     marquee:'НЕЗАБАРОМ У ВІДНІ'
   },
   cz: {
     kicker:'Coming Soon', h1:'Brzy otevíráme ve Vídni 🇦🇹', tag:'Dorty · Snídaně · Káva',
     card_h:'Zveme tě na otevření',
     card_p:'Nech nám svůj e-mail — pošleme ti datum otevření a osobní pozvánku.',
-    ph:'tvuj@email.cz', btn:'Chci pozvánku',
+    first_ph:'Jméno', last_ph:'Příjmení', ph:'tvuj@email.cz', btn:'Chci pozvánku',
     incentive:'🍰 Prvních 100 hostů — náš dezert na nás.',
     qr_txt:'Naskenuj a sdílej — pozvánka platí i pro přátele:',
     success:'✅ Děkujeme! Jakmile budeme znát datum otevření, napíšeme ti. 🤍',
@@ -250,7 +255,6 @@ const I18N = {
     cta_h:'Brzy ve Vídni — buď u toho od prvního dne.', cta_b:'Chci pozvánku',
     follow:'Sleduj nás:', social_other:'Naše kavárny v USA:', roots:'Ukrajinské kořeny · Čerstvé z farmy od prvního dne',
     sending:'Odesíláme…', error:'Něco se nepovedlo — zkus to prosím znovu.',
-    auto:'Vítej u Farmer\'s Milk! 🤍 Jsi na seznamu hostů. Ukaž tento e-mail při otevření – náš dezert je na nás. Napíšeme ti datum. Brzy ve Vídni!',
     marquee:'BRZY VE VÍDNI'
   }
 };
@@ -311,9 +315,10 @@ form.addEventListener('submit', async (e) => {
       method: 'POST',
       headers: {'Content-Type':'application/json','Accept':'application/json'},
       body: JSON.stringify({
+        first_name: form.first_name.value.trim(),
+        last_name: form.last_name.value.trim(),
         email: form.email.value,
         _subject: "🐄 Farmer's Milk Wien — neue Einladung",
-        _autoresponse: t.auto,
         lang: getLang(),
         source: 'farmersmilk.at landing'
       })
